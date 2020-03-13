@@ -27,7 +27,7 @@ url: "https://signalwire.com" # the base hostname & protocol for your site, e.g.
 github_username:  signalwire
 
 # Build settings
-theme: jekyll-theme-hacker
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-gist
