@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Introduction to LaML | SignalWire Developer Hub</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Introduction to LaML" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This project contains various developer-oriented content for SignalWire" />
+<meta property="og:description" content="This project contains various developer-oriented content for SignalWire" />
+<link rel="canonical" href="https://signalwire.com/intros/intro_laml.html" />
+<meta property="og:url" content="https://signalwire.com/intros/intro_laml.html" />
+<meta property="og:site_name" content="SignalWire Developer Hub" />
+<script type="application/ld+json">
+{"description":"This project contains various developer-oriented content for SignalWire","@type":"WebPage","url":"https://signalwire.com/intros/intro_laml.html","headline":"Introduction to LaML","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://signalwire.com/feed.xml" title="SignalWire Developer Hub" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">SignalWire Developer Hub</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Introduction to LaML</h1>
+  </header>
+
+  <div class="post-content">
+    <h1 id="what-is-laml">What is LaML?</h1>
+
+<p>LaML is the language used by SignalWire to determine how the phone numbers in your account react during calls or text messages. When a call or message comes into one of your SignalWire phone numbers, SignalWire makes an HTTP request to the URL endpoint you configured for that number. Your response to that request instructs SignalWire on what to do next.</p>
+
+<p>Responses to the HTTP request are in an XML format we call LaML. LaML allows you to specify instructions using simple LaML commands called verbs. SignalWire starts at the top of your LaML document and executes your LaML commands in order, from top to bottom.</p>
+
+<h1 id="how-laml-works">How LaML works</h1>
+
+<p>When n message or call is received by one of your SignalWire phone numbers, SignalWire lookup the URL endpoint you configured for that phone number and make an HTTP request to it. The URL endpoint then responds to the request with a LaML document that determines what to do next.</p>
+
+<p>SignalWire will read the instructions in the LaML document, from top to bottom, and execute the commands in order.</p>
+
+<p>You can generate and respond with raw XML yourself, or utilize one of the <a href="https://docs.signalwire.com/topics/laml-api/#laml-rest-api-client-libraries-and-sdks">SignalWire helper libraries</a> to help you generate it easily. To get started, we will be making use of SignalWire LaML Bins, our serverless hosted service that allows you to easily serve static documents without setting up any infrastructure.</p>
+
+<p>To find out how to set up your account and your first LaML bin, refer to <a href="/intros/signalwire_101">SignalWire 101</a></p>
+
+<p>Outbound calls and messages started via the <a href="https://docs.signalwire.com/topics/laml-api">LaML REST API</a> are controlled the same way. When you start an outbound call or message, you also pass a link to a LaML document. SignalWire will make a request to this document to determine how it should proceed with the call or message.</p>
+
+<p>While a single LaML document is executed at a time, many documents can be linked together and generated dynamically to create complex applications to fit any need.</p>
+
+<p>Documentation on LaML is available <a href="https://docs.signalwire.com/topics/laml-xml/#laml-xml-specification">on the SignalWire website</a>, and you will find more information there.</p>
+
+<p>Our goal for this article will to create simple practical interactions to showcase the LaML bulding blocks and features.</p>
+
+<h2 id="call-forwarding-and-mustache-templating">Call forwarding and Mustache templating</h2>
+
+<p>A common use case is to forward an incoming call to another phone number. For example, you might not want to give out your personal phone number, or you would like to be able to handle calls in different ways than just connecting them.</p>
+
+<p>The following LaML will result in all calls being forwarded to the specified number, which in the example is a Washington State weather service.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/62a8ffe5ee07f50aa901c0cad6c778ad.js"> </script>
+
+<p>You will notice a specific tag being used in this document, `` as the value of the <code class="highlighter-rouge">callerId</code> property.</p>
+
+<p>That is a Mustache templating variable that is used to make your LaML Bin dynamic. Any variable that is part of the HTTP payload for the request, whether it is one of the<a href="https://docs.signalwire.com/laml-xml/#voice-laml-overview-request-parameters">standard parameters</a> or a query string variable you set (<code class="highlighter-rouge">https://yourspace.signalwire.com/laml-bins/your-laml-bin-id?YOURVARIABLE=123</code>) will be available for replacement.</p>
+
+<p>In this case, we are using the <code class="highlighter-rouge">From</code> value so that the caller ID for the forwarded call echoes the original calling number. In this way, your calls will have the correct caller identification.</p>
+
+<p>SignalWire allows you to set your caller ID to three types of numbers:</p>
+<ul>
+  <li>The caller ID the call is coming from, such as in this example</li>
+  <li>A number you own on your SignalWire account</li>
+  <li>A phone number you have verified with your SignalWire account</li>
+</ul>
+
+<p>This provides flexibility while protecting our users from fraud.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">SignalWire Developer Hub</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">SignalWire Developer Hub</li><li><a class="u-email" href="mailto:luca@signalwire.com">luca@signalwire.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/signalwire"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">signalwire</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This project contains various developer-oriented content for SignalWire</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

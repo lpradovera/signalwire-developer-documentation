@@ -5,9 +5,8 @@
 layout: home
 ---
 
-# Welcome!
-
 This website is a repository for SignalWire documentation.
 
 ## Introductions
-[SignalWire 101](/intros/signalwire_101)
+- [SignalWire 101](/intros/signalwire_101)
+- [Introduction to LaML](/intros/intro_laml)
