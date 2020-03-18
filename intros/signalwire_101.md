@@ -32,7 +32,7 @@ Documentation on LaML is available [on the SignalWire website](https://docs.sign
 
 ![New LaML Bin](/assets/new_laml_bin.png)
 
-The `<Say>` tag is the relevant part here. It has many  otions, and support for quite a few languages. We will stay with the defaults for now, but you can find more information [here](https://docs.signalwire.com/topics/laml-xml/#voice-laml-say).
+The `<Say>` tag is the relevant part here. It has many  options, and support for quite a few languages. We will stay with the defaults for now, but you can find more information [here](https://docs.signalwire.com/topics/laml-xml/#voice-laml-say).
 
 Here is how your bin contents should look like:
 

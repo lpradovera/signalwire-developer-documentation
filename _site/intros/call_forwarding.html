@@ -3,17 +3,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>SignalWire 101 | SignalWire Developer Hub</title>
+<title>Call Forwarding with SignalWire | SignalWire Developer Hub</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="SignalWire 101" />
+<meta property="og:title" content="Call Forwarding with SignalWire" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This project contains various developer-oriented content for SignalWire" />
 <meta property="og:description" content="This project contains various developer-oriented content for SignalWire" />
-<link rel="canonical" href="https://signalwire.com/intros/signalwire_101.html" />
-<meta property="og:url" content="https://signalwire.com/intros/signalwire_101.html" />
+<link rel="canonical" href="https://signalwire.com/intros/call_forwarding.html" />
+<meta property="og:url" content="https://signalwire.com/intros/call_forwarding.html" />
 <meta property="og:site_name" content="SignalWire Developer Hub" />
 <script type="application/ld+json">
-{"description":"This project contains various developer-oriented content for SignalWire","@type":"WebPage","url":"https://signalwire.com/intros/signalwire_101.html","headline":"SignalWire 101","@context":"https://schema.org"}</script>
+{"description":"This project contains various developer-oriented content for SignalWire","@type":"WebPage","url":"https://signalwire.com/intros/call_forwarding.html","headline":"Call Forwarding with SignalWire","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://signalwire.com/feed.xml" title="SignalWire Developer Hub" /></head>
 <body><header class="site-header">
@@ -35,20 +35,18 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">SignalWire 101</h1>
+    <h1 class="post-title">Call Forwarding with SignalWire</h1>
   </header>
 
   <div class="post-content">
-    <p>Welcome! My name is Luca, and I am the lead solutions architect at SignalWire. This post marks the beginning of a series that will take us on a trip through all of SignalWire’s features and offerings.</p>
+    <p>Remote work has become even more important in this day and age. You might have wondered how you could have a phone number to give out to your customers, that is not your personal mobile. You could even want to point the number back at your office after the remote work period has passed.</p>
 
-<p>Today, we will be going through a crash course that will have us receiving your first phone call on your SignalWire account.</p>
-
-<p>First of all, we will register for a new SignalWire account. Let’s go to the home page and click on Sign Up in the top right. Enter your email and we are off to the races!</p>
+<p>First of all, we will register for a new SignalWire account. Let’s go to the home page and click on Sign Up in the top right.</p>
 
 <p><img src="/assets/sign_up.png" alt="SignalWire Home Page" /></p>
 
-<p>You will receive an email with a confirmation link, and by clicking it you will end up on the account setup page. The first field to fill in is the Space name. What is a Space, you will ask? It is your personal SignalWire domain to which all services are tied.
-The rest are just the usual sign up fields.</p>
+<p>You will receive an email with a confirmation link, and by clicking it you will end up on the account setup page. The first field to fill in is the Space name. A SignalWire Space is your personal domain to which all services are tied.
+Make sure you fill in all of the sign up fields.</p>
 
 <p><img src="/assets/space_name.png" alt="SignalWire Sign Up" /></p>
 
@@ -61,29 +59,25 @@ The rest are just the usual sign up fields.</p>
 <p>To set up an inbound phone call, we will need two elements: a phone number, and a LaML bin to handle the call.
 Let’s start from the LaML bin. Click on <code class="highlighter-rouge">LaML</code>, then pick the <code class="highlighter-rouge">Bins</code> entry from the menu, and hit <code class="highlighter-rouge">New</code>.</p>
 
-<p>You might be wondering what LaML is. It is our XML-flavored markup language, and each document describes a behavior for your call. For example, in this tutorial we will be creating an “Hello World” document that will just say that phrase using text-to-speech.</p>
+<p>LaML is our XML-flavored markup language, and each document describes a behavior for your call.</p>
 
 <p>Documentation on LaML is available <a href="https://docs.signalwire.com/topics/laml-xml/#laml-xml-specification">on the SignalWire website</a>.</p>
 
-<p><img src="/assets/new_laml_bin.png" alt="New LaML Bin" /></p>
-
-<p>The <code class="highlighter-rouge">&lt;Say&gt;</code> tag is the relevant part here. It has many  options, and support for quite a few languages. We will stay with the defaults for now, but you can find more information <a href="https://docs.signalwire.com/topics/laml-xml/#voice-laml-say">here</a>.</p>
-
-<p>Here is how your bin contents should look like:</p>
+<p>The following LaML will result in all calls being forwarded to the number you specify. The example uses a Washington weather service, but you would replace the number with your personal phone.</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
-<script src="https://gist.github.com/b0e0100acbba10acb1b459c78acce878.js"> </script>
+<script src="https://gist.github.com/62a8ffe5ee07f50aa901c0cad6c778ad.js"> </script>
 
-<p>Save your LaML bin and one side of our call is set up.</p>
+<p>You will notice a specific tag being used in this document, `` as the value of the <code class="highlighter-rouge">callerId</code> property. It is an advanced feature that allows every incoming call to be forwarded to you with the correct caller ID.</p>
 
-<p>Next, you will need a phone number. Click “Phone numbers”, hit “New”, and pick a number you like. We support searching by area code and specific strings of text. I recommend starting with a local number.</p>
+<p>Next, you will need a phone number. Click “Phone numbers”, hit “New”, and pick a number you like. We support searching by area code and specific strings of text. A local number will be best for your usage. This will be the phone number you hand out to people.</p>
 
 <p><img src="/assets/pick_number.png" alt="Pick Phone Number" /></p>
 
-<p>Now we have two more steps to go through: the first is pointing our new phone number to the LaML bin we created earlier, and after we do that we will need to verify another number to be able to dial in.</p>
+<p>Now we have two more steps to go through: the first is pointing our new phone number to the LaML bin we created earlier, and we will need to verify your personal phone number.</p>
 
-<p>We will quickly go back to the LaML page and copy the bin’s URL, then set this as the handler for the number</p>
+<p>We will quickly go back to the LaML page and copy the bin’s URL, then set this as the handler for the number.</p>
 
 <p><img src="/assets/copy_bin_url.png" alt="Copy Bin URL" /></p>
 
@@ -97,7 +91,7 @@ Let’s start from the LaML bin. Click on <code class="highlighter-rouge">LaML</
 
 <p><img src="/assets/verify_number.png" alt="Verify Number" /></p>
 
-<p>It is now time to test our setup: using the verified phone, place a call to the DID you bought. You will be greeted with the familiar words all developers like to hear, “Hello World!”.</p>
+<p>Now, any time you or someone else places a call to the DID you bought, it will be forwarded to your personal phone. To change the destination, just edit the LaML document.</p>
 
   </div>
 

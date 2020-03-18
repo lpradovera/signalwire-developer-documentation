@@ -20,7 +20,7 @@ You can generate and respond with raw XML yourself, or utilize one of the [Signa
 
 To find out how to set up your account and your first LaML bin, refer to [SignalWire 101](/intros/signalwire_101)
 
-Outbound calls and messages started via the [LaML REST API](https://docs.signalwire.com/topics/laml-api) are controlled the same way. When you start an outbound call or message, you also pass a link to a LaML document. SignalWire will make a request to this document to determine how it should proceed with the call or message.
+Outbound calls and messages started via the [LaML REST API](https://docs.signalwire.com/topics/laml-api), whichwe will cover in a subsequent post, are controlled the same way. When you start an outbound call or message, you also pass a link to a LaML document. SignalWire will make a request to this document to determine how it should proceed with the call or message.
 
 While a single LaML document is executed at a time, many documents can be linked together and generated dynamically to create complex applications to fit any need.
 
@@ -48,3 +48,31 @@ SignalWire allows you to set your caller ID to three types of numbers:
 - A phone number you have verified with your SignalWire account
 
 This provides flexibility while protecting our users from fraud.
+
+## Gathering a choice and playing it back
+
+Most non-trivial applications will require a web application to be serving your LaML documents, so you can perform actions when your callers send you input.
+
+For now, and to explore the concept of callbacks, we will be trying out a simple two-document flow where a caller will say something and we will play it back to them.
+
+We will work on the two required LaML bins in reverse order, so we have the URL to use as an action in the prompt bin.
+
+The first bin we need is a simple document that will play back what the user said, using the Mustache templating we encountered above.
+
+{% gist b5f8d34adb8c465d9e98660411032f4c %}
+
+We use the `Say` verb to speak the `SpeechResult` variable back to the caller using text-to-speech. As with most other verbs, it supports many options, including the speech language. You can find out more about `Say` [here](https://docs.signalwire.com/topics/laml-xml/#voice-laml-say).
+
+Take note of the LaML bin URL in your dashboard, as you will need it in the next step. We will create a bin that will be used as the action URL for the phone number you have set up. When the user speaks, their speech will be recognized using Automated Speech Recognition (ASR) and stored in the `SpeechResult` variable to be posted back to the endpoint you specify in the `action` parameter.
+
+{% gist 7bd221b8c070c1c8b65fec5152e25e91 %}
+
+Finally, set the action URL for your phone number as the latter bin we created, and try calling your number!
+
+## What else can LaML do for you?
+
+LaML provides verbs to create conferences, queues, record and play back audio, receive speech and DTMF (pressed digits) input, and many other features.
+
+It is very easy to create composable interfaces and enable complex call flows.
+
+Go register at [SignalWire](https://signalwire.com) now and let us know about the exciting applications you will build!
