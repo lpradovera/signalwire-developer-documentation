@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The LaML REST API | SignalWire Developer Hub</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="The LaML REST API" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This project contains various developer-oriented content for SignalWire" />
+<meta property="og:description" content="This project contains various developer-oriented content for SignalWire" />
+<link rel="canonical" href="https://signalwire.com/intros/laml_rest_api.html" />
+<meta property="og:url" content="https://signalwire.com/intros/laml_rest_api.html" />
+<meta property="og:site_name" content="SignalWire Developer Hub" />
+<script type="application/ld+json">
+{"description":"This project contains various developer-oriented content for SignalWire","@type":"WebPage","url":"https://signalwire.com/intros/laml_rest_api.html","headline":"The LaML REST API","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://signalwire.com/feed.xml" title="SignalWire Developer Hub" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">SignalWire Developer Hub</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">The LaML REST API</h1>
+  </header>
+
+  <div class="post-content">
+    <p>The <a href="https://docs.signalwire.com/topics/laml-api/#laml-rest-api">LaML REST API</a> is a comprehensive REST API that enables easy management of all aspects of the SignalWire LaML functionality including calls, conferences, messaging and account maintenance.</p>
+
+<p>SignalWire’s REST API allows you to manage and modify calls and messages made to or from your SignalWire phone numbers. You also have the ability to retrieve and update your account information, retrieve your entire history of calls, messages, transcriptions, media and more.</p>
+
+<p>An application such as a PBX has the ability to search for and purchase phone numbers, then set their destinations.</p>
+
+<p>This can all be achieved by sending HTTP requests to the SignalWire REST API.</p>
+
+<h1 id="getting-started-with-ruby">Getting started with Ruby</h1>
+
+<p>For the sake of this post, we will be using the <a href="https://github.com/signalwire/signalwire-ruby">Ruby library</a> available via Rubygems.</p>
+
+<p>Our SDKs support many languages, and you can find information on each on the <a href="https://docs.signalwire.com/topics/laml-api/#laml-rest-api-client-libraries-and-sdks">documentation</a> website.</p>
+
+<p>The instructions to get started with Ruby are <a href="https://docs.signalwire.com/topics/laml-api/#laml-rest-api-client-libraries-and-sdks-ruby">here</a>, but all you need for this tutorial is to install the gem.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>signalwire
+</code></pre></div></div>
+
+<p>You will also need your space URL, project ID, and API token from your SignalWire dashboard.</p>
+
+<p><img src="/assets/api_credentials.png" alt="API Credentials" /></p>
+
+<p>Initializing the client is then very simple:</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/b599978b99239f2f1b60cd12fffe1f52.js"> </script>
+
+<blockquote>
+  <p>As a reminder, when you are doing outbound calling or messaging, you will need to verify your target number first if your account is in trial. The verification form can be found in the dashboard, under <code class="highlighter-rouge">Phone Numbers &gt; Verified</code>.</p>
+</blockquote>
+
+<h1 id="making-a-phone-call">Making a phone call</h1>
+
+<p>The first idea we can experiment with is making a phone call to your own number. This could be an example of a reminder call coming from an automated system, or some kind of alert.</p>
+
+<p>We will need three pieces. The first is a LaML bin containing the message we would like to play back. In a complete application, instead of the LaML bin, you would be using your own HTTP endpoint to provide the document.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/98fa59d893f0f5601ee26462919921a5.js"> </script>
+
+<p>Second, you need to have at least one phone number in your SignalWire account, to be used as the caller ID.</p>
+
+<p>The third and final piece is a Ruby file containing the necessary code. I will be repeating the client instantiation code in each block throughout the article so they can be ran stand-alone.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/a442b6026b07c438761ce1274e6ef4ce.js"> </script>
+
+<p>Run your Ruby code and listen to the reminder!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby call.rb
+</code></pre></div></div>
+
+<h1 id="sending-a-text-message-or-mms">Sending a text message or MMS</h1>
+
+<p>In much the same fashion, it is very easy to send out a text message or an MMS to a phone number. To attach a media file to a message, simply specify a <code class="highlighter-rouge">media_url</code> parameter, pointing at a file available via HTTP. The size limit is currently 0.5Mb and the list of accepted MIME types can be found <a href="https://docs.signalwire.com/topics/laml-xml/#messaging-laml-overview-mime-types">here</a>.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/b89d156c02403413de8ed043f994bff5.js"> </script>
+
+<h1 id="sending-a-fax">Sending a fax</h1>
+
+<p>To send a fax, just use the client in a very similar way to an MMS. In this case, we will include a <code class="highlighter-rouge">status_callback</code> URL to introduce that concept.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/f32dceb458f2ae087cdd906c722966c6.js"> </script>
+
+<h2 id="using-status-callbacks">Using status callbacks</h2>
+
+<p>All of the above requests can specify a <code class="highlighter-rouge">status_callback</code> URL as part of the parameters. If provided, SignalWire will send a POST request to that URL every time the status of the action being performed changes.</p>
+
+<p>For example, when sending a fax, the endpoint will receive form encoded parameters with how many pages have been sent so far, a status code such as <code class="highlighter-rouge">sending</code> and any errors that present themselves. It would be then easy to update a UI with information on the fax processing.</p>
+
+<h1 id="listing-usage">Listing usage</h1>
+
+<p>The last example we are going to look at is how to list the calls that have been made on your project. This could be useful for billing or just for your internal reference.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/279433018832d097824c582f80192164.js"> </script>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>There are many more things you can achieve using the LaML REST API, such as listing and buying phone numbers, but we will leave those for our PBX functionality series of posts.</p>
+
+<p>Built something exciting with LaML and SignalWire? Let us know!</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">SignalWire Developer Hub</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">SignalWire Developer Hub</li><li><a class="u-email" href="mailto:luca@signalwire.com">luca@signalwire.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/signalwire"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">signalwire</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This project contains various developer-oriented content for SignalWire</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

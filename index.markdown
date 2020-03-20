@@ -11,3 +11,4 @@ This website is a repository for SignalWire documentation.
 - [SignalWire 101](/intros/signalwire_101)
 - [Introduction to LaML](/intros/intro_laml)
 - [Call forwarding](/intros/call_forwarding)
+- [LaML REST API](/intros/laml_rest_api)
