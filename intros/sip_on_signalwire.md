@@ -78,3 +78,5 @@ It allows you to create a domain to which to point all of your SIP calls.
 Dialing `anything@your-domain.dapp.signalwire.com` will get the call into the LaML webhook you specify.
 
 This allows you to use connectivity from any provider capable of sending a call to a SIP address to use SignalWire services.
+
+> Always use whitelisting of IPs if possible, as otherwise all requests to the domain will be processed.

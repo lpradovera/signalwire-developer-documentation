@@ -9,13 +9,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This project contains various developer-oriented content for SignalWire" />
 <meta property="og:description" content="This project contains various developer-oriented content for SignalWire" />
-<link rel="canonical" href="https://signalwire.com/intros/sip_on_signalwire.html" />
-<meta property="og:url" content="https://signalwire.com/intros/sip_on_signalwire.html" />
+<link rel="canonical" href="http://localhost:4000/intros/sip_on_signalwire.html" />
+<meta property="og:url" content="http://localhost:4000/intros/sip_on_signalwire.html" />
 <meta property="og:site_name" content="SignalWire Developer Hub" />
 <script type="application/ld+json">
-{"headline":"SIP on SignalWire","description":"This project contains various developer-oriented content for SignalWire","url":"https://signalwire.com/intros/sip_on_signalwire.html","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"SIP on SignalWire","description":"This project contains various developer-oriented content for SignalWire","url":"http://localhost:4000/intros/sip_on_signalwire.html","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://signalwire.com/feed.xml" title="SignalWire Developer Hub" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="SignalWire Developer Hub" /></head>
 <body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">SignalWire Developer Hub</a><nav class="site-nav">
@@ -115,6 +115,10 @@ Password: the password you set
 <p>Dialing <code class="highlighter-rouge">anything@your-domain.dapp.signalwire.com</code> will get the call into the LaML webhook you specify.</p>
 
 <p>This allows you to use connectivity from any provider capable of sending a call to a SIP address to use SignalWire services.</p>
+
+<blockquote>
+  <p>Always use whitelisting of IPs if possible, as otherwise all requests to the domain will be processed.</p>
+</blockquote>
 
   </div>
 
