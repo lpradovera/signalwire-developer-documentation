@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>SIP on SignalWire | SignalWire Developer Hub</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="SIP on SignalWire" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This project contains various developer-oriented content for SignalWire" />
+<meta property="og:description" content="This project contains various developer-oriented content for SignalWire" />
+<link rel="canonical" href="https://signalwire.com/intros/sip_on_signalwire.html" />
+<meta property="og:url" content="https://signalwire.com/intros/sip_on_signalwire.html" />
+<meta property="og:site_name" content="SignalWire Developer Hub" />
+<script type="application/ld+json">
+{"headline":"SIP on SignalWire","description":"This project contains various developer-oriented content for SignalWire","url":"https://signalwire.com/intros/sip_on_signalwire.html","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://signalwire.com/feed.xml" title="SignalWire Developer Hub" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">SignalWire Developer Hub</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">SIP on SignalWire</h1>
+  </header>
+
+  <div class="post-content">
+    <p>In our previous posts, we have explored the many opportunities the LaML API provides for application developers.</p>
+
+<p>SignalWire also supports the standard in VoIP telephony, the SIP protocol. This allows you to connect your devices and systems to the SignalWire Cloud, and to leverage the available features from existing SIP infrastructure.</p>
+
+<h1 id="creating-and-registering-a-sip-endpoint">Creating and registering a SIP endpoint</h1>
+
+<p>To register and use SIP endpoints to place calls, head to the <code class="highlighter-rouge">SIP</code> page in your dashboard.</p>
+
+<p>First of all, let’s take a look at the <code class="highlighter-rouge">SIP Settings</code> tab.</p>
+
+<p><img src="/assets/sip_profile_settings.png" alt="SignalWire SIP Profile Settings" /></p>
+
+<p>This is where the most important options for SIP are set. Your SIP registration URI has been filled in with a random string, and you can change that to something more legible if you so wish.</p>
+
+<p>Setting a default number to use as caller ID is also possible, and you can manage your codec settings from here.</p>
+
+<p>Endpoints can also be created programmatically as discussed <a href="https://signalwire.com/blogs/product/programmable-sip-connectivity-and-routing">in this article</a>. That would be useful for an application needing to create many endpoints for a set of clients.</p>
+
+<h2 id="registering-to-signalwire">Registering to SignalWire</h2>
+
+<p>Depending on your SIP client, you might have to enter settings in a different way. The generic setup would be:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Username: the username portion of the SIP address you set up
+Domain: the domain portion of the SIP address
+Password: the password you set
+</code></pre></div></div>
+
+<p>A SIP desktop client example is Bria, a very feature-complete and usable softphone. Setting that up for SignalWire SIP is very simple.</p>
+
+<p><img src="/assets/bria_settings.png" alt="SignalWire SIP Bria Settings" /></p>
+
+<p>You could of course use the same credentials to connect your hardware phone or a PBX such as FusionPBX or FreePBX.</p>
+
+<h2 id="making-calls-from-your-endpoint">Making calls from your endpoint</h2>
+
+<p>After registering, just dial a PSTN number (try <code class="highlighter-rouge">+1-202-762-1401</code> for the Washington D.C. weather phone). You can also dial SIP addresses straight away.</p>
+
+<h1 id="triggering-outbound-calls-via-laml">Triggering outbound calls via LaML</h1>
+
+<p>If you are using LaML, you might want to dial out to a SIP target using the <code class="highlighter-rouge">&lt;Dial&gt;</code> verb. In that case, the <code class="highlighter-rouge">&lt;Sip&gt;</code> tag is what you would use.</p>
+
+<p>Documented <a href="https://docs.signalwire.com/topics/laml-xml/#voice-laml-dial-sip">here</a>, it allows you to dial out to SIP addresses with various options. You can set a <code class="highlighter-rouge">StatusCallback</code> URL as with other <code class="highlighter-rouge">&lt;Dial&gt;</code> targets, to get status updates during the process.</p>
+
+<p>SignalWire supports authenticating to a SIP proxy via the <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> attributes, and the standard SIP URI components can be added to drive specific application needs.</p>
+
+<p>Here is a full example:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/476ec2f7f6137d84aca2d039904f5cad.js"> </script>
+
+<blockquote>
+  <p>Caller IDs work differently when dialing out to SIP: you can use any ID, and it assumed to be validated by your SIP upstream. This applies both on LaML and outbound REST calls.</p>
+</blockquote>
+
+<h1 id="making-outbound-calls-via-the-laml-api">Making outbound calls via the LaML API</h1>
+
+<p>To trigger outbound calls using the LaML API, you can use the Calls LaML REST API documented <a href="https://docs.signalwire.com/topics/laml-api/#api-reference-calls-create-a-call">here</a>.</p>
+
+<p>The method supports a long list of parameters, and the relevant ones for SIP are <code class="highlighter-rouge">SipAuthUsername</code> and <code class="highlighter-rouge">SipAuthPassword</code>. The <code class="highlighter-rouge">Url</code> would support the same structure and SIP options as the LaML version.</p>
+
+<p>A full example in CURL and Ruby:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/a811a24f921d0429127f9983bf069c92.js"> </script>
+
+<h1 id="inbound-sip-the-domain-application">Inbound SIP: the Domain Application</h1>
+
+<p>To receive calls from a SIP source to your SignalWire account in a Bring Your Own Connectivty (BYOC) scenario, you would use the SIP Domain Application features.</p>
+
+<p>It allows you to create a domain to which to point all of your SIP calls.</p>
+
+<p><img src="/assets/creating_domain_app.png" alt="Setting up a Domain App" /></p>
+
+<p>Dialing <code class="highlighter-rouge">anything@your-domain.dapp.signalwire.com</code> will get the call into the LaML webhook you specify.</p>
+
+<p>This allows you to use connectivity from any provider capable of sending a call to a SIP address to use SignalWire services.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">SignalWire Developer Hub</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">SignalWire Developer Hub</li><li><a class="u-email" href="mailto:luca@signalwire.com">luca@signalwire.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/signalwire"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">signalwire</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This project contains various developer-oriented content for SignalWire</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
